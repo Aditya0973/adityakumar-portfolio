@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Volume2, VolumeX, Palette, FileText, Menu, X, Home, User, Briefcase, Mail } from "lucide-react";
+import { ArrowUpRight, Volume2, VolumeX, Palette, FileText, Menu, X, Home, User, Briefcase, Mail, Download } from "lucide-react";
 import { usePortfolioTheme, THEME_CONFIGS, ThemePreset, FONT_CONFIGS, FontPreset } from "@/context/ThemeContext";
 import { playFigmaClick, playPop, toggleSound } from "@/utils/soundEffects";
 import { DonutShowcase } from "./DonutShowcase";
@@ -16,18 +16,16 @@ const NAV_ITEMS = [
   { label: "Contact", href: "/contact", icon: Mail }
 ];
 
+// USER'S EXACT LIVE SOCIAL LINKS
 const SOCIAL_LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/adityakumar0973/" },
-  { label: "Behance", href: "https://www.behance.net/adityakumar973" },
-  { label: "GitHub", href: "https://github.com/Aditya0973" },
-  { label: "Instagram", href: "https://www.instagram.com/aditya0973/" },
-  { label: "Twitter-X", href: "https://x.com/Aditya0973" },
-  { label: "YouTube", href: "https://www.youtube.com/@Aditya0973" }
+  { label: "Behance", href: "https://www.behance.net/1c5da35f" },
+  { label: "GitHub", href: "https://github.com/Aditya0973" }
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { theme, setTheme, font, setFont, soundEnabled, toggleSound: toggleAudio } = usePortfolioTheme();
+  const { theme, setTheme, font, setFont, soundEnabled, toggleSound: toggleAudio, colors } = usePortfolioTheme();
   const [paletteOpen, setPaletteOpen] = React.useState(false);
   const [mobileDrawerOpen, setMobileDrawerOpen] = React.useState(false);
 
@@ -50,27 +48,26 @@ export function Sidebar() {
         <Link href="/" className="flex items-center gap-2.5">
           <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#e5e2de] shrink-0">
             <img
-              src="https://framerusercontent.com/images/ufOc2IY8vYV9YEQuVbYGIRBmtpA.jpg"
+              src="/media/me.jpg"
               alt="Aditya Kumar"
               className="w-full h-full object-cover"
             />
           </div>
           <div>
-            <div className="text-xs font-bold text-black leading-tight">Aditya Kumar</div>
+            <div className="text-xs font-semibold text-black leading-tight">Aditya Kumar</div>
             <div className="text-[10px] font-mono text-[#757575] uppercase">UI/UX Designer</div>
           </div>
         </Link>
 
         <div className="flex items-center gap-2">
-          {/* Resume button quick access */}
+          {/* Mobile Download Resume */}
           <a
             href="/resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="p-2 rounded-xl bg-[#edeae7] text-black text-xs font-mono font-semibold flex items-center gap-1"
-            title="View Resume"
+            download="Resume_Aditya_Kumar_2026.pdf"
+            className="p-2 rounded-xl bg-[#edeae7] text-black text-xs font-mono font-semibold flex items-center gap-1 hover:bg-[#e5e2de] transition-colors"
+            title="Download Resume PDF"
           >
-            <FileText className="w-3.5 h-3.5" />
+            <Download className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Resume</span>
           </a>
 
@@ -99,9 +96,9 @@ export function Sidebar() {
                   key={item.href}
                   href={item.href}
                   onClick={handleNavClick}
-                  className={`px-4 py-3 rounded-2xl text-sm font-medium flex items-center gap-3 ${
+                  className={`px-4 py-3 rounded-2xl text-sm font-medium flex items-center gap-3 transition-colors ${
                     pathname === item.href
-                      ? "bg-white text-black font-bold shadow-sm"
+                      ? "bg-white text-black font-semibold shadow-sm"
                       : "text-[#757575] hover:text-black hover:bg-[#edeae7]"
                   }`}
                 >
@@ -114,14 +111,13 @@ export function Sidebar() {
             <div className="pt-4 border-t border-[#e5e2de] flex items-center justify-between">
               <a
                 href="/resume.pdf"
-                download
+                download="Resume_Aditya_Kumar_2026.pdf"
                 className="text-xs font-mono text-black font-semibold flex items-center gap-1.5"
               >
-                <FileText className="w-4 h-4" />
+                <Download className="w-4 h-4" />
                 <span>Download Resume (PDF)</span>
               </a>
 
-              {/* Sound button */}
               <button
                 onClick={handleSoundToggle}
                 className="p-2 rounded-xl bg-[#edeae7] text-black"
@@ -135,7 +131,7 @@ export function Sidebar() {
       </AnimatePresence>
 
       {/* ========================================================================= */}
-      {/* DESKTOP FIXED SIDEBAR (Matches exact Framer Screenshot layout) */}
+      {/* DESKTOP FIXED SIDEBAR */}
       {/* ========================================================================= */}
       <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 w-64 bg-[#edeae7]/60 border-r border-[#e5e2de] p-6 flex-col justify-between select-none z-30 overflow-y-auto">
         {/* Top Profile Header */}
@@ -143,13 +139,16 @@ export function Sidebar() {
           <Link href="/" onClick={handleNavClick} className="flex items-center gap-3 group">
             <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#e5e2de] shrink-0 group-hover:scale-105 transition-transform">
               <img
-                src="https://framerusercontent.com/images/ufOc2IY8vYV9YEQuVbYGIRBmtpA.jpg"
+                src="/media/me.jpg"
                 alt="Aditya Kumar"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-bold tracking-tight text-black group-hover:text-[#4a5d4e] transition-colors">
+              <span
+                className="text-sm font-semibold tracking-tight text-black transition-colors"
+                style={{ "--hover-color": colors.accent } as React.CSSProperties}
+              >
                 Aditya Kumar
               </span>
               <span className="text-[10px] font-mono uppercase tracking-wider text-[#757575]">
@@ -158,7 +157,7 @@ export function Sidebar() {
             </div>
           </Link>
 
-          {/* Navigation Items (White Pill active state matching screenshot) */}
+          {/* Navigation Items (Subtle medium weight pill active state) */}
           <nav className="space-y-1">
             {NAV_ITEMS.map((item) => {
               const isActive =
@@ -171,9 +170,9 @@ export function Sidebar() {
                   key={item.href}
                   href={item.href}
                   onClick={handleNavClick}
-                  className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium transition-all ${
+                  className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium transition-all duration-200 ${
                     isActive
-                      ? "bg-white text-black font-bold shadow-sm border border-[#e5e2de]/60"
+                      ? "bg-white text-black font-semibold shadow-sm border border-[#e5e2de]/80"
                       : "text-[#757575] hover:text-black hover:bg-[#f5f2f0]/80"
                   }`}
                 >
@@ -184,24 +183,24 @@ export function Sidebar() {
             })}
           </nav>
 
-          {/* Procedural 3D Donut Interactive Widget (Matches user screenshot) */}
+          {/* Embedded 3D Donut Video Widget */}
           <DonutShowcase />
         </div>
 
-        {/* Bottom Section: Interactive Controls, Resume & Socials */}
-        <div className="space-y-5 pt-6 border-t border-[#e5e2de]">
-          {/* Designer Controls: Theme & Sound & Resume */}
-          <div className="flex items-center justify-between gap-2">
+        {/* Bottom Section: Theme Controls, Resume PDF Download, and Socials */}
+        <div className="space-y-5 pt-5 border-t border-[#e5e2de]">
+          {/* Controls Row: Palette Picker, Sound Toggle, and Resume Download */}
+          <div className="flex items-center justify-between gap-1.5">
             {/* Theme Picker Dropup */}
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setPaletteOpen(!paletteOpen)}
-                className="p-2 rounded-xl bg-[#f5f2f0] border border-[#e5e2de] text-black hover:border-black/30 transition-colors flex items-center gap-1.5 text-xs font-mono"
-                title="Change Portfolio Color Theme"
+                className="p-2 rounded-xl bg-[#f5f2f0] border border-[#e5e2de] text-black hover:border-black/30 transition-colors flex items-center gap-1 text-xs font-mono"
+                title="Change Color Theme & Accent"
               >
-                <Palette className="w-3.5 h-3.5 text-[#4a5d4e]" />
-                <span className="capitalize">{theme}</span>
+                <Palette className="w-3.5 h-3.5" style={{ color: colors.accent }} />
+                <span className="capitalize text-[11px]">{theme}</span>
               </button>
 
               <AnimatePresence>
@@ -212,7 +211,7 @@ export function Sidebar() {
                     exit={{ opacity: 0, y: 10 }}
                     className="absolute bottom-11 left-0 w-44 rounded-2xl bg-[#f5f2f0] border border-[#e5e2de] p-2 shadow-xl z-50 space-y-1 text-xs font-mono"
                   >
-                    <div className="px-2 py-1 text-[10px] text-[#757575] uppercase">Color Theme</div>
+                    <div className="px-2 py-1 text-[10px] text-[#757575] uppercase">Accent Theme</div>
                     {(Object.keys(THEME_CONFIGS) as ThemePreset[]).map((p) => (
                       <button
                         key={p}
@@ -222,7 +221,7 @@ export function Sidebar() {
                           setPaletteOpen(false);
                         }}
                         className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-left transition-colors ${
-                          theme === p ? "bg-black text-white font-bold" : "hover:bg-[#edeae7] text-black"
+                          theme === p ? "bg-black text-white font-semibold" : "hover:bg-[#edeae7] text-black"
                         }`}
                       >
                         <span>{THEME_CONFIGS[p].name}</span>
@@ -230,7 +229,7 @@ export function Sidebar() {
                       </button>
                     ))}
 
-                    <div className="pt-1 border-t border-[#e5e2de] px-2 py-1 text-[10px] text-[#757575] uppercase">Typography</div>
+                    <div className="pt-1 border-t border-[#e5e2de] px-2 py-1 text-[10px] text-[#757575] uppercase">Font Scale</div>
                     {(Object.keys(FONT_CONFIGS) as FontPreset[]).map((f) => (
                       <button
                         key={f}
@@ -239,7 +238,7 @@ export function Sidebar() {
                           playPop();
                         }}
                         className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-left transition-colors ${
-                          font === f ? "bg-black text-white font-bold" : "hover:bg-[#edeae7] text-black"
+                          font === f ? "bg-black text-white font-semibold" : "hover:bg-[#edeae7] text-black"
                         }`}
                       >
                         <span>{FONT_CONFIGS[f].name}</span>
@@ -250,7 +249,7 @@ export function Sidebar() {
               </AnimatePresence>
             </div>
 
-            {/* Sound Mute Toggle */}
+            {/* Sound Toggle */}
             <button
               onClick={handleSoundToggle}
               className="p-2 rounded-xl bg-[#f5f2f0] border border-[#e5e2de] text-black hover:border-black/30 transition-colors"
@@ -259,22 +258,21 @@ export function Sidebar() {
               {soundEnabled ? <Volume2 className="w-3.5 h-3.5 text-black" /> : <VolumeX className="w-3.5 h-3.5 text-[#757575]" />}
             </button>
 
-            {/* Resume Button */}
+            {/* PC Resume View & Download Button */}
             <a
               href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="px-2.5 py-2 rounded-xl bg-black text-white text-xs font-mono font-semibold hover:bg-black/80 transition-colors flex items-center gap-1 shadow-sm"
-              title="View or Download Resume"
+              download="Resume_Aditya_Kumar_2026.pdf"
+              className="px-3 py-2 rounded-xl bg-black text-white text-xs font-mono font-medium hover:bg-black/80 transition-colors flex items-center gap-1 shadow-sm shrink-0"
+              title="Download Resume (PDF)"
             >
-              <FileText className="w-3 h-3" />
+              <Download className="w-3 h-3" />
               <span>Resume</span>
             </a>
           </div>
 
-          {/* Social Links Column */}
+          {/* Social Links Stack: LinkedIn, Behance, GitHub */}
           <div className="space-y-1 text-xs">
-            <span className="text-[10px] font-mono text-[#757575] uppercase tracking-wider block mb-1.5">
+            <span className="text-[10px] font-mono text-[#757575] uppercase tracking-wider block mb-1">
               Follow me
             </span>
             <div className="flex flex-col gap-1">

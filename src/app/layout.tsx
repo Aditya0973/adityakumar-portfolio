@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { InteractiveDock } from "@/components/InteractiveDock";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   title: "Aditya Kumar - UI/UX Designer Portfolio",
   description: "Aditya Kumar — UI/UX designer focused on building clean, intuitive digital products for web and mobile, combining usability, visual clarity, and purposeful design.",
   icons: {
-    icon: "https://framerusercontent.com/images/ufOc2IY8vYV9YEQuVbYGIRBmtpA.jpg"
+    icon: "/media/me.jpg"
   }
 };
 
@@ -36,6 +37,9 @@ export default function RootLayout({
               <main className="flex-1">{children}</main>
             </div>
           </div>
+
+          {/* Floating Interactive Spaces Dock */}
+          <InteractiveDock />
         </ThemeProvider>
       </body>
     </html>

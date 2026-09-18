@@ -13,38 +13,52 @@ interface ThemeContextType {
   soundEnabled: boolean;
   setSoundEnabled: (enabled: boolean) => void;
   toggleSound: () => void;
+  colors: {
+    bg: string;
+    card: string;
+    border: string;
+    accent: string;
+    accentHover: string;
+  };
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const THEME_CONFIGS: Record<ThemePreset, { name: string; bg: string; card: string; border: string; accent: string }> = {
+export const THEME_CONFIGS: Record<
+  ThemePreset,
+  { name: string; bg: string; card: string; border: string; accent: string; accentHover: string }
+> = {
   sand: {
     name: "Warm Sand",
     bg: "#e9e6e2",
     card: "#f5f2f0",
     border: "#e5e2de",
-    accent: "#4a5d4e"
+    accent: "#4a5d4e", // The original Framer sage green
+    accentHover: "#3d4f41"
   },
   sage: {
-    name: "Sage Mint",
-    bg: "#e2e8e2",
-    card: "#edf2ed",
-    border: "#dce3dc",
-    accent: "#2e5a36"
+    name: "Forest Pine",
+    bg: "#e3e8e3",
+    card: "#edf3ed",
+    border: "#d5dfd5",
+    accent: "#1b4d2e",
+    accentHover: "#143a22"
   },
   rose: {
-    name: "Dusty Rose",
-    bg: "#ede4e4",
-    card: "#f7eded",
-    border: "#e5dada",
-    accent: "#7c3a4d"
+    name: "Dusty Terracotta",
+    bg: "#ede4e1",
+    card: "#f7eeec",
+    border: "#e5d7d4",
+    accent: "#8c4438",
+    accentHover: "#73362c"
   },
   clay: {
-    name: "Earth Clay",
-    bg: "#e6e0da",
-    card: "#eeeae4",
-    border: "#ded7cf",
-    accent: "#6b4f3b"
+    name: "Warm Umber",
+    bg: "#e7e1d9",
+    card: "#efe9e2",
+    border: "#ddd4c9",
+    accent: "#6b4f3b",
+    accentHover: "#553e2e"
   }
 };
 
@@ -89,6 +103,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setSoundEnabled(!soundEnabled);
   };
 
+  const currentColors = THEME_CONFIGS[theme];
+
   return (
     <ThemeContext.Provider
       value={{
@@ -98,14 +114,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         setFont,
         soundEnabled,
         setSoundEnabled,
-        toggleSound
+        toggleSound,
+        colors: currentColors
       }}
     >
       <div
         className={`${FONT_CONFIGS[font].className} transition-colors duration-500 min-h-screen`}
         style={{
-          backgroundColor: THEME_CONFIGS[theme].bg,
-          color: "#000000"
+          backgroundColor: currentColors.bg,
+          color: "#000000",
+          // CSS custom properties for reactive styling across the site
+          // @ts-ignore
+          "--theme-bg": currentColors.bg,
+          "--theme-card": currentColors.card,
+          "--theme-border": currentColors.border,
+          "--theme-accent": currentColors.accent,
+          "--theme-accent-hover": currentColors.accentHover
         }}
       >
         {children}
