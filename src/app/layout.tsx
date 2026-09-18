@@ -4,6 +4,7 @@ import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { InteractiveDock } from "@/components/InteractiveDock";
+import { DesignerPlayground } from "@/components/DesignerPlayground";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,6 +41,9 @@ export default function RootLayout({
 
           {/* Floating Interactive Spaces Dock */}
           <InteractiveDock />
+
+          {/* Designer Interactive Easter Egg Playground */}
+          <DesignerPlayground />
         </ThemeProvider>
       </body>
     </html>

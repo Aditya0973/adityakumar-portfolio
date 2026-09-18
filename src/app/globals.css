@@ -41,3 +41,16 @@ html, body {
 ::-webkit-scrollbar-thumb:hover {
   background: #a9a39c;
 }
+
+/* Designer Inspect Mode Easter Egg */
+body.designer-inspect-active div,
+body.designer-inspect-active section,
+body.designer-inspect-active button {
+  outline: 1px dashed rgba(0, 87, 255, 0.25);
+}
+body.designer-inspect-active div:hover,
+body.designer-inspect-active section:hover,
+body.designer-inspect-active button:hover {
+  outline: 2px solid #0057FF !important;
+  cursor: crosshair !important;
+}
