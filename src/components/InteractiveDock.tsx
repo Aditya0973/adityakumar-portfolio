@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, X, ArrowUpRight } from "lucide-react";
 import { playPop, playFigmaClick } from "@/utils/soundEffects";
@@ -10,6 +11,7 @@ interface DockItem {
   name: string;
   subtitle: string;
   externalUrl: string;
+  internalUrl?: string;
   accent: string;
   cardBg: string;
   border: string;
@@ -24,6 +26,7 @@ const DOCK_ITEMS: DockItem[] = [
     name: "Behance",
     subtitle: "3D Blender visual compositions, graphic identity, and poster series.",
     externalUrl: "https://www.behance.net/1c5da35f",
+    internalUrl: "/behance",
     accent: "#0057FF", // Exact Behance Royal Blue
     cardBg: "#060913",
     border: "#1d293d",
@@ -222,21 +225,35 @@ export function InteractiveDock() {
                 </div>
               </div>
 
-              {/* Launch External Link CTA */}
-              <div className="pt-2 border-t border-white/10 flex items-center justify-between gap-4">
-                <span className="text-[11px] font-mono text-white/60">
-                  Direct external space
-                </span>
+              {/* Launch External Link CTA & Internal Space */}
+              <div className="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+                {activeItem.internalUrl ? (
+                  <Link
+                    href={activeItem.internalUrl}
+                    onClick={() => {
+                      playFigmaClick();
+                      setActiveItem(null);
+                    }}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 transition-all shadow-sm"
+                  >
+                    <span>Enter {activeItem.name} Space</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                ) : (
+                  <span className="text-[11px] font-mono text-white/60">
+                    Direct external space
+                  </span>
+                )}
 
                 <a
                   href={activeItem.externalUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl text-xs font-bold text-white shadow-lg hover:scale-[1.03] active:scale-[0.98] transition-all"
                   style={{ backgroundColor: activeItem.accent }}
                 >
-                  <span>Launch {activeItem.name}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Launch External ↗</span>
+                  <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </motion.div>

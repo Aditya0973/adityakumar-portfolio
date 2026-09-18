@@ -127,7 +127,7 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 3. SERVICES: 3D TiltCards with Cursor Glare Sheen */}
+      {/* 3. SERVICES: Unique, Vivid, 2x Strength Animations (No Dull Overlays) */}
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="text-center space-y-1">
@@ -140,87 +140,211 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-2">
-          {SERVICES.map((srv) => (
-            <TiltCard
-              key={srv.id}
-              tiltStrength={12}
-              className="rounded-2xl"
-              onClick={() => playPop()}
-            >
-              <div className="p-5 h-full rounded-2xl bg-[#f5f2f0] border border-[#e5e2de] hover:border-black/30 transition-all space-y-2 group">
-                <h3 className="text-sm font-semibold text-black group-hover:text-[#4a5d4e] transition-colors">
-                  {srv.title}
-                </h3>
-                <p className="text-xs text-[#757575] leading-relaxed">
-                  {srv.description}
-                </p>
+          {/* Card 1: Web Design (Browser Header Dots Animation) */}
+          <motion.div
+            whileHover={{ y: -10, scale: 1.03, borderColor: colors.accent }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            onClick={() => playPop()}
+            className="p-5 rounded-2xl bg-[#f5f2f0] border border-[#e5e2de] shadow-xs hover:shadow-xl transition-all space-y-3 group cursor-pointer relative overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1.5 opacity-40 group-hover:opacity-100 transition-opacity">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
               </div>
-            </TiltCard>
-          ))}
-
-          {/* 6th Card: Contact Me prompt */}
-          <TiltCard tiltStrength={10} className="rounded-2xl">
-            <div
-              className="p-5 h-full rounded-2xl text-white border space-y-2 flex flex-col justify-between"
-              style={{ backgroundColor: colors.accent, borderColor: colors.accentHover }}
-            >
-              <div>
-                <h3 className="text-sm font-semibold">Contact Me</h3>
-                <p className="text-xs text-white/80 leading-relaxed mt-1">
-                  Let&apos;s connect to discuss your design needs, explore creative ideas, and plan your project.
-                </p>
-              </div>
-              <MagneticButton pullStrength={0.25}>
-                <Link
-                  href="/contact"
-                  className="block w-full py-2 px-4 rounded-xl bg-white text-black text-xs font-medium text-center hover:bg-neutral-100 transition-colors shadow-xs"
-                >
-                  Let&apos;s Connect
-                </Link>
-              </MagneticButton>
+              <span className="text-[10px] font-mono text-[#757575] group-hover:text-black transition-colors">01</span>
             </div>
-          </TiltCard>
+            <div>
+              <h3 className="text-sm font-bold text-black group-hover:text-[#4a5d4e] transition-colors">
+                Web Design
+              </h3>
+              <p className="text-xs text-[#555] leading-relaxed mt-1">
+                Responsive websites crafted with clear structure, smooth user flows, and visuals that support real user goals.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 2: Mobile App Design (Dynamic Island / Notch Bounce) */}
+          <motion.div
+            whileHover={{ y: -10, rotate: 1.5, scale: 1.03, borderColor: "#0057FF" }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            onClick={() => playPop()}
+            className="p-5 rounded-2xl bg-[#f5f2f0] border border-[#e5e2de] shadow-xs hover:shadow-xl transition-all space-y-3 group cursor-pointer relative overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-3 rounded-full bg-neutral-300 group-hover:bg-neutral-800 transition-colors mx-auto" />
+              <span className="text-[10px] font-mono text-[#757575] group-hover:text-black transition-colors">02</span>
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-black group-hover:text-[#0057FF] transition-colors">
+                Mobile App Design
+              </h3>
+              <p className="text-xs text-[#555] leading-relaxed mt-1">
+                Intuitive mobile app experiences focused on usability, clean functionality, and engaging visual systems.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 3: Design Systems (Color Token Swatches Fan-Out) */}
+          <motion.div
+            whileHover={{ y: -10, scale: 1.03, borderColor: "#10B981" }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            onClick={() => playPop()}
+            className="p-5 rounded-2xl bg-[#f5f2f0] border border-[#e5e2de] shadow-xs hover:shadow-xl transition-all space-y-3 group cursor-pointer relative overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center -space-x-1 group-hover:space-x-1 transition-all">
+                <span className="w-3 h-3 rounded-full bg-[#0057FF] shadow-xs" />
+                <span className="w-3 h-3 rounded-full bg-[#10B981] shadow-xs" />
+                <span className="w-3 h-3 rounded-full bg-[#6864F6] shadow-xs" />
+              </div>
+              <span className="text-[10px] font-mono text-[#757575] group-hover:text-black transition-colors">03</span>
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-black group-hover:text-[#10B981] transition-colors">
+                Design Systems
+              </h3>
+              <p className="text-xs text-[#555] leading-relaxed mt-1">
+                Scalable component libraries, style guides, and design tokens to keep digital products consistent and cohesive.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 4: 3D Modeling (Isometric Wireframe Rotate) */}
+          <motion.div
+            whileHover={{ y: -10, rotate: -1.5, scale: 1.03, borderColor: "#FF7021" }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            onClick={() => playPop()}
+            className="p-5 rounded-2xl bg-[#f5f2f0] border border-[#e5e2de] shadow-xs hover:shadow-xl transition-all space-y-3 group cursor-pointer relative overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-4 h-4 border-2 border-neutral-400 rounded group-hover:rotate-45 group-hover:border-[#FF7021] transition-transform duration-300" />
+              <span className="text-[10px] font-mono text-[#757575] group-hover:text-black transition-colors">04</span>
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-black group-hover:text-[#FF7021] transition-colors">
+                3D Modeling
+              </h3>
+              <p className="text-xs text-[#555] leading-relaxed mt-1">
+                Crafting visual 3D elements in Blender to elevate landing pages, hero headers, and brand showcases.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 5: Brand Identity (Typography Kerning Expand) */}
+          <motion.div
+            whileHover={{ y: -10, scale: 1.03, borderColor: "#A259FF" }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            onClick={() => playPop()}
+            className="p-5 rounded-2xl bg-[#f5f2f0] border border-[#e5e2de] shadow-xs hover:shadow-xl transition-all space-y-3 group cursor-pointer relative overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-neutral-400 group-hover:text-[#A259FF] group-hover:rotate-180 transition-all duration-300">
+                ✦
+              </span>
+              <span className="text-[10px] font-mono text-[#757575] group-hover:text-black transition-colors">05</span>
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-black group-hover:tracking-wider group-hover:text-[#A259FF] transition-all">
+                Brand Identity
+              </h3>
+              <p className="text-xs text-[#555] leading-relaxed mt-1">
+                Creating memorable visual identities, logo marks, and expressive typography systems for modern brands.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 6: Contact Me CTA Card (Glowing Wave + Liquid Button Animation) */}
+          <motion.div
+            whileHover={{ y: -10, scale: 1.03 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            className="p-5 rounded-2xl text-white border space-y-3 flex flex-col justify-between shadow-lg relative overflow-hidden"
+            style={{ backgroundColor: colors.accent, borderColor: colors.accentHover }}
+          >
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-white/70">Collaboration</span>
+                <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+              </div>
+              <h3 className="text-sm font-bold">Contact Me</h3>
+              <p className="text-xs text-white/80 leading-relaxed mt-1">
+                Let&apos;s connect to discuss your design needs, explore creative ideas, and plan your project.
+              </p>
+            </div>
+
+            {/* Unique Button Animation: Liquid Expand + Invert */}
+            <motion.div
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.94 }}
+              transition={{ type: "spring", stiffness: 450, damping: 20 }}
+            >
+              <Link
+                href="/contact"
+                onClick={() => playFigmaClick()}
+                className="block w-full py-2.5 px-4 rounded-xl bg-white text-black text-xs font-semibold text-center hover:bg-neutral-100 transition-colors shadow-md hover:shadow-xl"
+              >
+                Let&apos;s Connect ✦
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 4. ABOUT ME PREVIEW: 3D Tilt Card */}
+      {/* 4. ABOUT ME PREVIEW: Bold Interactive Card */}
       {/* ========================================================================= */}
-      <TiltCard tiltStrength={8} className="rounded-3xl">
-        <section className="p-6 sm:p-8 rounded-3xl bg-[#f5f2f0] border border-[#e5e2de] flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="space-y-3 flex-1">
-            <span className="text-[10px] font-mono uppercase tracking-wider font-semibold" style={{ color: colors.accent }}>
-              About me
-            </span>
-            <p className="text-xs sm:text-sm text-[#000000]/80 leading-relaxed">
-              I&apos;m Aditya Kumar, a UI/UX designer focused on crafting thoughtful digital experiences that feel intuitive and purposeful. With a strong emphasis on usability, clarity, and visual balance, I design products that not only look good but solve real user problems.
-            </p>
-            <p className="text-xs sm:text-sm text-[#757575] leading-relaxed">
-              Outside work, I explore design systems and experiment with 3D modeling in Blender to push visual boundaries.
-            </p>
-            <div className="pt-2">
+      <motion.section
+        whileHover={{ y: -8, scale: 1.01 }}
+        transition={{ type: "spring", stiffness: 300, damping: 22 }}
+        className="p-6 sm:p-8 rounded-3xl bg-[#f5f2f0] border border-[#e5e2de] hover:border-black/30 hover:shadow-xl transition-all flex flex-col md:flex-row items-center justify-between gap-8"
+      >
+        <div className="space-y-3 flex-1">
+          <span className="text-[10px] font-mono uppercase tracking-wider font-semibold" style={{ color: colors.accent }}>
+            About me
+          </span>
+          <p className="text-xs sm:text-sm text-black/80 leading-relaxed">
+            I&apos;m Aditya Kumar, a UI/UX designer focused on crafting thoughtful digital experiences that feel intuitive and purposeful. With a strong emphasis on usability, clarity, and visual balance, I design products that not only look good but solve real user problems.
+          </p>
+          <p className="text-xs sm:text-sm text-[#757575] leading-relaxed">
+            Outside work, I explore design systems and experiment with 3D modeling in Blender to push visual boundaries.
+          </p>
+
+          {/* Unique Button: Underline Slider + Arrow Orbit */}
+          <div className="pt-2">
+            <motion.div
+              whileHover={{ x: 4 }}
+              className="inline-block"
+            >
               <Link
                 href="/about"
-                className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-black hover:opacity-75 transition-opacity group"
+                onClick={() => playFigmaClick()}
+                className="inline-flex items-center gap-2 text-xs font-mono font-bold text-black group relative pb-0.5"
               >
                 <span>Read Full Story</span>
-                <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300" />
               </Link>
-            </div>
+            </motion.div>
           </div>
+        </div>
 
-          <div className="relative w-full sm:w-64 h-52 rounded-2xl overflow-hidden border border-[#e5e2de] shrink-0 shadow-md bg-[#edeae7] group">
-            <img
-              src="/media/me.jpg"
-              alt="Aditya Kumar"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-        </section>
-      </TiltCard>
+        <div className="relative w-full sm:w-64 h-52 rounded-2xl overflow-hidden border border-[#e5e2de] shrink-0 shadow-md bg-[#edeae7] group">
+          <img
+            src="/media/me.jpg"
+            alt="Aditya Kumar"
+            className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+          />
+        </div>
+      </motion.section>
 
       {/* ========================================================================= */}
-      {/* 5. DESIGN PROCESS: 3D TiltCards */}
+      {/* 5. DESIGN PROCESS: 3 Unique Step Animations */}
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="space-y-1">
@@ -233,40 +357,61 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <TiltCard tiltStrength={12} className="rounded-3xl">
-            <div className="p-6 h-full rounded-3xl bg-[#f5f2f0] border border-[#e5e2de] space-y-2 hover:border-black/20 transition-colors">
-              <span className="text-xs font-mono font-semibold" style={{ color: colors.accent }}>Creative Discovery /01</span>
-              <h3 className="text-sm font-semibold text-black">Research & Empathy</h3>
-              <p className="text-xs text-[#757575] leading-relaxed">
-                Through research and collaboration, I uncover goals, audience needs, and brand vision to build a solid creative foundation.
-              </p>
+          {/* Step 01: Radar Sonar Pulse */}
+          <motion.div
+            whileHover={{ y: -10, rotate: -1.5, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            onClick={() => playPop()}
+            className="p-6 rounded-3xl bg-[#f5f2f0] border border-[#e5e2de] hover:border-black/30 hover:shadow-xl transition-all space-y-2 cursor-pointer group relative overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono font-bold" style={{ color: colors.accent }}>Creative Discovery /01</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 group-hover:scale-150 transition-transform" />
             </div>
-          </TiltCard>
+            <h3 className="text-sm font-bold text-black">Research & Empathy</h3>
+            <p className="text-xs text-[#555] leading-relaxed">
+              Through research and collaboration, I uncover goals, audience needs, and brand vision to build a solid creative foundation.
+            </p>
+          </motion.div>
 
-          <TiltCard tiltStrength={12} className="rounded-3xl">
-            <div className="p-6 h-full rounded-3xl bg-[#f5f2f0] border border-[#e5e2de] space-y-2 hover:border-black/20 transition-colors">
-              <span className="text-xs font-mono font-semibold" style={{ color: colors.accent }}>Design Blueprint /02</span>
-              <h3 className="text-sm font-semibold text-black">Wireframes & Flows</h3>
-              <p className="text-xs text-[#757575] leading-relaxed">
-                Transforming insights into structured wireframes and prototypes that guide visuals, user experience, and brand alignment seamlessly.
-              </p>
+          {/* Step 02: Blueprint Ruler Lines Draw */}
+          <motion.div
+            whileHover={{ y: -10, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            onClick={() => playPop()}
+            className="p-6 rounded-3xl bg-[#f5f2f0] border border-[#e5e2de] hover:border-[#0057FF] hover:shadow-xl transition-all space-y-2 cursor-pointer group relative overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono font-bold text-[#0057FF]">Design Blueprint /02</span>
+              <span className="text-[10px] font-mono opacity-40 group-hover:opacity-100 transition-opacity">GRID 8px</span>
             </div>
-          </TiltCard>
+            <h3 className="text-sm font-bold text-black">Wireframes & Flows</h3>
+            <p className="text-xs text-[#555] leading-relaxed">
+              Transforming insights into structured wireframes and prototypes that guide visuals, user experience, and brand alignment seamlessly.
+            </p>
+          </motion.div>
 
-          <TiltCard tiltStrength={12} className="rounded-3xl">
-            <div className="p-6 h-full rounded-3xl bg-[#f5f2f0] border border-[#e5e2de] space-y-2 hover:border-black/20 transition-colors">
-              <span className="text-xs font-mono font-semibold" style={{ color: colors.accent }}>Flawless Execution /03</span>
-              <h3 className="text-sm font-semibold text-black">High-Fidelity UI</h3>
-              <p className="text-xs text-[#757575] leading-relaxed">
-                Final designs are crafted, developed, and refined to ensure polished, user-centered results with measurable client satisfaction.
-              </p>
+          {/* Step 03: High-Fi UI Spark */}
+          <motion.div
+            whileHover={{ y: -10, rotate: 1.5, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            onClick={() => playPop()}
+            className="p-6 rounded-3xl bg-[#f5f2f0] border border-[#e5e2de] hover:border-black/30 hover:shadow-xl transition-all space-y-2 cursor-pointer group relative overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono font-bold" style={{ color: colors.accent }}>Flawless Execution /03</span>
+              <span className="text-xs group-hover:rotate-90 transition-transform duration-300">✦</span>
             </div>
-          </TiltCard>
+            <h3 className="text-sm font-bold text-black">High-Fidelity UI</h3>
+            <p className="text-xs text-[#555] leading-relaxed">
+              Final designs are crafted, developed, and refined to ensure polished, user-centered results with measurable client satisfaction.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. REVIEWS: 3D TiltCards */}
+      {/* 6. REVIEWS: Floating Speech Bubble & Staggering Star Pulsing */}
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="space-y-1">
@@ -280,17 +425,32 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {TESTIMONIALS.map((t, idx) => (
-            <TiltCard key={idx} tiltStrength={10} className="rounded-2xl">
-              <div className="p-5 h-full rounded-2xl bg-[#f5f2f0] border border-[#e5e2de] flex flex-col justify-between gap-4 hover:border-black/20 transition-colors">
-                <p className="text-xs text-[#000000]/80 italic leading-relaxed">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div>
-                  <div className="text-xs font-semibold text-black">{t.author}</div>
-                  <div className="text-[10px] text-[#757575] font-mono">{t.role}</div>
+            <motion.div
+              key={idx}
+              whileHover={{ y: -10, scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 350, damping: 20 }}
+              onClick={() => playPop()}
+              className="p-5 rounded-2xl bg-[#f5f2f0] border border-[#e5e2de] hover:border-black/30 hover:shadow-xl transition-all flex flex-col justify-between gap-4 cursor-pointer group"
+            >
+              <p className="text-xs text-black/85 italic leading-relaxed">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <div>
+                <div className="text-xs font-bold text-black">{t.author}</div>
+                <div className="text-[10px] text-[#757575] font-mono">{t.role}</div>
+                <div className="flex items-center gap-1 mt-1">
+                  {[...Array(5)].map((_, sIdx) => (
+                    <motion.span
+                      key={sIdx}
+                      className="text-amber-500 text-xs inline-block"
+                      whileHover={{ scale: 1.4 }}
+                    >
+                      ★
+                    </motion.span>
+                  ))}
                 </div>
               </div>
-            </TiltCard>
+            </motion.div>
           ))}
         </div>
       </section>

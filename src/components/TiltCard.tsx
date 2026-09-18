@@ -73,16 +73,7 @@ export function TiltCard({
       whileTap={{ scale: 0.98 }}
       className={`relative overflow-hidden cursor-pointer ${className}`}
     >
-      {/* Glare sheen overlay that tracks the cursor */}
-      {isHovered && (
-        <motion.div
-          className="pointer-events-none absolute -inset-px z-30 transition-opacity duration-300 rounded-[inherit]"
-          style={{
-            background: `radial-gradient(circle at ${glareX.get()} ${glareY.get()}, rgba(255,255,255,${glareOpacity}), transparent 70%)`,
-            mixBlendMode: "overlay"
-          }}
-        />
-      )}
+      {/* Clean high-contrast card content with 0 washed-out overlay */}
       <div className="relative z-10 h-full w-full">{children}</div>
     </motion.div>
   );
