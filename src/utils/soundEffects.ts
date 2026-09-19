@@ -141,3 +141,43 @@ export const playFigmaClick = () => {
     osc.stop(ctx.currentTime + 0.05);
   } catch (e) {}
 };
+
+// Project Hail Mary: Rocky's Alien Multi-Tonal Melodic Chord Speech Synthesizer
+export const playRockyVoice = () => {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    // Rocky communicates in beautiful flute-like multi-tonal musical chords
+    // Chord sequence: [C5 + G5] -> [E5 + B5] -> [G5 + D6] ("Amaze! Amaze! Fist bump!")
+    const chordSteps = [
+      { freqs: [523.25, 783.99], time: 0, dur: 0.14 },
+      { freqs: [659.25, 987.77], time: 0.15, dur: 0.14 },
+      { freqs: [783.99, 1174.66, 1567.98], time: 0.30, dur: 0.28 }
+    ];
+
+    chordSteps.forEach(({ freqs, time, dur }) => {
+      freqs.forEach((f) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f, ctx.currentTime + time);
+        // Subtle frequency vibrato
+        osc.frequency.exponentialRampToValueAtTime(f * 1.02, ctx.currentTime + time + dur * 0.5);
+        osc.frequency.exponentialRampToValueAtTime(f, ctx.currentTime + time + dur);
+
+        gain.gain.setValueAtTime(0.08, ctx.currentTime + time);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + time + dur);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(ctx.currentTime + time);
+        osc.stop(ctx.currentTime + time + dur);
+      });
+    });
+  } catch (e) {}
+};
+

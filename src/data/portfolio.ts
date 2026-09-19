@@ -99,35 +99,72 @@ export const SERVICES = [
 export const EXPERIENCES = [
   {
     company: "AlgobrainAI",
-    role: "Associate UI/UX Designer",
-    period: "October 2025 - Current",
-    badge: "Current"
+    role: "UI/UX Designer",
+    period: "Oct 2025 – Dec 2025",
+    type: "Remote"
   },
   {
     company: "FuturixAI",
     role: "Associate UI/UX Designer",
-    period: "August 2025 - September 2025"
+    period: "Aug 2025 – Sep 2025",
+    type: "Remote"
   },
   {
     company: "Okie Dokie",
-    role: "UI/UX Designer",
-    period: "June 2025 - August 2025"
+    role: "UI/UX Design Intern",
+    period: "Jun 2025 – Aug 2025",
+    type: "Remote"
   },
   {
     company: "Boediarto Company",
-    role: "UI/UX Designer",
-    period: "March 2025 - May 2025"
+    role: "Freelance UI/UX Designer",
+    period: "Mar 2025 – May 2025",
+    type: "Remote"
   },
   {
-    company: "National Informatics Centre",
+    company: "National Informatics Centre (NIC)",
     role: "UI/UX Design Intern",
-    period: "January 2025 - February 2025"
+    period: "Jan 2025 – Feb 2025",
+    type: "New Delhi"
   },
   {
     company: "Hestabit Technology",
-    role: "Django Developer",
-    period: "November 2023 - November 2023"
+    role: "Django Developer Intern",
+    period: "Nov 2023 – Nov 2023",
+    type: "Remote"
   }
+];
+
+export const EDUCATION = [
+  {
+    institution: "VIT Bhopal University",
+    degree: "Bachelor of Technology in Computer Science & Engineering",
+    period: "Aug 2021 – Oct 2025",
+    grade: "CGPA: 7.31"
+  }
+];
+
+export const CERTIFICATIONS = [
+  {
+    name: "Google Foundations of UX Design",
+    issuer: "Coursera / Google",
+    link: "https://www.coursera.org/account/accomplishments/verify/K8LELXKTASLV"
+  },
+  {
+    name: "IBM User Experience Design Fundamentals",
+    issuer: "IBM / Credly",
+    link: "https://www.credly.com/badges/3afa805c-7731-431f-80ef-b976bb605a77/linked_in_profile"
+  },
+  {
+    name: "Internshala UI/UX Design Specialization",
+    issuer: "Internshala Trainings",
+    link: "https://trainings.internshala.com/view_certificate/flbq8l9cl21/fcaq5ujsn7o/"
+  }
+];
+
+export const ACHIEVEMENTS = [
+  "Grand Finalist in KAVACH 2023 National Cyber Hackathon (Team Trailblazers)",
+  "Finalist in Innovate You 2024 Techathon"
 ];
 
 export const TESTIMONIALS = [

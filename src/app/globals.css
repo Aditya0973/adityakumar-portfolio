@@ -1,16 +1,31 @@
 @import "tailwindcss";
 
-:root {
-  /* Framer Design Tokens */
-  --bg-sand: #e9e6e2;
-  --bg-sand-light: #edeae7;
-  --bg-sand-card: #f5f2f0;
-  --text-dark: #000000;
-  --text-muted: #757575;
-  --border-sand: #e5e2de;
-  --accent-olive: #4a5d4e;
-  --selection-bg: #4a5d4e;
-  --selection-color: #e5e2de;
+@layer base {
+  :root {
+    --font-sans: var(--font-sans);
+    --font-serif: var(--font-serif);
+    --font-mono: var(--font-mono);
+
+    /* Warm Tactile Sketch Palette */
+    --bg-canvas: #FAF8F5;
+    --bg-canvas-subtle: #F3EFEA;
+    --bg-card: #FFFFFF;
+    --border-sketch: #E5DFC5;
+    --border-dark: #121212;
+
+    /* Bold High-Energy Accents */
+    --cobalt: #0057FF;
+    --cobalt-dark: #0044CC;
+    --lime: #CCFF00;
+    --tangerine: #FF5500;
+    --lilac: #EADDFE;
+    --butter: #FFF4CC;
+    --ink: #121212;
+    --muted: #666666;
+
+    --selection-bg: #0057FF;
+    --selection-color: #FFFFFF;
+  }
 }
 
 ::selection {
@@ -19,34 +34,67 @@
 }
 
 html, body {
-  background-color: var(--bg-sand);
-  color: var(--text-dark);
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  background-color: #FAF8F5;
+  color: #121212;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar matching Framer */
+/* Tactile graph paper subtle grid */
+.bg-sketch-grid {
+  background-size: 24px 24px;
+  background-image: 
+    radial-gradient(circle, rgba(0, 87, 255, 0.08) 1px, transparent 1px);
+}
+
+.bg-sketch-grid-dense {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-sand);
+  background: #FAF8F5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c8c3bd;
+  background: #D9D2C7;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a9a39c;
+  background: #0057FF;
+}
+
+/* Wiggle keyframes for playful stickers */
+@keyframes sketch-wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.animate-sketch-wiggle {
+  animation: sketch-wiggle 3s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
 }
 
 /* Designer Inspect Mode Easter Egg */
 body.designer-inspect-active div,
 body.designer-inspect-active section,
 body.designer-inspect-active button {
-  outline: 1px dashed rgba(0, 87, 255, 0.25);
+  outline: 1px dashed rgba(0, 87, 255, 0.3);
 }
 body.designer-inspect-active div:hover,
 body.designer-inspect-active section:hover,

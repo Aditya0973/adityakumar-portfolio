@@ -69,7 +69,7 @@ export function TiltCard({
         transformStyle: "preserve-3d",
         perspective: 1000
       }}
-      whileHover={{ scale: 1.025, transition: { duration: 0.2 } }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
       whileTap={{ scale: 0.98 }}
       className={`relative overflow-hidden cursor-pointer ${className}`}
     >
