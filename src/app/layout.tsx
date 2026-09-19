@@ -33,10 +33,12 @@ export const metadata: Metadata = {
   description: "Playful, human-sketched digital experiences, interfaces, and design systems by Aditya Kumar. Based in India.",
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
       { url: "/media/aditya.jpg", type: "image/jpeg" }
     ],
-    shortcut: "/media/aditya.jpg",
-    apple: "/media/aditya.jpg"
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.jpg"
   }
 };
 
