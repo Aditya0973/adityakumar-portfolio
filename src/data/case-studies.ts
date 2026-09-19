@@ -39,7 +39,7 @@ export interface CaseStudy {
 export const CASE_STUDIES: Record<string, CaseStudy> = {
   commit: {
     slug: "commit",
-    title: "Commit â€” Offline-First Habit Tracker",
+    title: "Commit - Offline-First Habit Tracker",
     client: "Crafted Co.",
     service: "Mobile App Design & UX System",
     year: "2025",
@@ -127,7 +127,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
 
   bali: {
     slug: "bali",
-    title: "Explore Bali â€” Immersive Travel Experience",
+    title: "Explore Bali - Immersive Travel Experience",
     client: "Emergio Games Design Assessment",
     service: "Web Design & Editorial UX",
     year: "2025",
@@ -208,7 +208,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
 
   dashboard: {
     slug: "dashboard",
-    title: "Cafe Admin â€” Restaurant & POS Management Console",
+    title: "Cafe Admin - Restaurant & POS Management Console",
     client: "Cafe SaaS Concept",
     service: "Enterprise UI/UX & Design System",
     year: "2025",

@@ -22,7 +22,8 @@ import {
   Compass,
   Briefcase,
   Wrench,
-  X
+  X,
+  FileText
 } from "lucide-react";
 import { CASE_STUDIES } from "@/data/case-studies";
 import { Footer } from "@/components/Footer";
@@ -77,9 +78,9 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
         <AutonomousSpring color="#2E7D32" width={60} height={30} />
       </div>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 space-y-12">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 space-y-10">
         {/* Top Navigation Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-neutral-300 pb-4">
+        <div className="flex items-center justify-between border-b border-neutral-300 pb-4">
           <Link
             href="/work"
             className="inline-flex items-center gap-2 text-xs font-mono font-bold text-neutral-700 hover:text-black transition-colors px-3 py-1.5 rounded-md bg-white border border-neutral-300 shadow-2xs group"
@@ -88,39 +89,17 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
             <span>Back to All Works</span>
           </Link>
 
-          {/* View Mode Switcher */}
-          <div className="inline-flex items-center p-1 bg-neutral-200/80 rounded-xl border border-neutral-300 shadow-inner">
-            <button
-              onClick={() => setViewMode("scrapbook")}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
-                viewMode === "scrapbook"
-                  ? "bg-white text-black shadow-2xs border border-neutral-300"
-                  : "text-neutral-600 hover:text-black"
-              }`}
-            >
-              <LayoutTemplate className="w-3.5 h-3.5 text-[#E65100]" />
-              <span>Scrapbook Story</span>
-            </button>
-            <button
-              onClick={() => setViewMode("deck")}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all ${
-                viewMode === "deck"
-                  ? "bg-white text-black shadow-2xs border border-neutral-300"
-                  : "text-neutral-600 hover:text-black"
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5 text-[#0057FF]" />
-              <span>Full Deck ({study.deckSlides.length} Slides)</span>
-            </button>
-          </div>
+          <span className="text-xs font-mono text-neutral-500 hidden sm:inline-block">
+            {study.year} Design Archive
+          </span>
         </div>
 
         {/* Hero Section */}
-        <header className="relative space-y-6">
-          <RealisticPaperClip color="#E65100" size={36} className="absolute -left-6 -top-4 hidden sm:block" />
+        <header className="relative space-y-6 pt-2">
+          <RealisticPaperClip color="#E65100" size={34} className="absolute -left-3 sm:-left-6 -top-3 hidden sm:block" />
 
           {/* Badges */}
-          <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono pl-0 sm:pl-2">
             <span className="font-bold text-[#E65100] bg-orange-100 px-2.5 py-0.5 rounded-md border border-orange-200">
               UX CASE STUDY
             </span>
@@ -170,7 +149,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
           </div>
         </header>
 
-        {/* Figma Prototype Hub Callout Card */}
+        {/* Figma Prototype & PDF Hub Callout Card */}
         <section className="relative p-6 sm:p-8 rounded-2xl bg-[#121212] text-white border-2 border-black shadow-[6px_6px_0px_0px_#000] overflow-hidden">
           <div className="absolute -right-8 -top-8 w-48 h-48 bg-gradient-to-br from-[#E65100]/20 to-[#0057FF]/20 rounded-full blur-3xl pointer-events-none" />
           
@@ -183,7 +162,7 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
                 Experience the Live Interactive Prototype
               </h3>
               <p className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed">
-                Test the end-to-end user flows, micro-interactions, responsive states, and transitions directly on Figma.
+                Test the end-to-end user flows, micro-interactions, responsive states, and transitions directly on Figma, or inspect the full design document.
               </p>
             </div>
 
@@ -201,13 +180,51 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
                 href={study.pdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                download
                 className="flex-1 md:flex-initial inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-neutral-800 text-neutral-200 hover:text-white font-mono font-bold text-xs border border-neutral-700 hover:bg-neutral-700 transition-all active:scale-98"
               >
-                <Download className="w-3.5 h-3.5" />
-                <span>PDF Deck</span>
+                <Eye className="w-3.5 h-3.5 text-[#0057FF]" />
+                <span>View PDF (New Tab)</span>
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------------------- */}
+        {/* PROMINENT VIEW MODE SWITCHER (BELOW LIVE DESIGN ARTIFACT CARD)    */}
+        {/* ---------------------------------------------------------------- */}
+        <section className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-3 sm:p-4 rounded-2xl bg-white border-2 border-neutral-300 shadow-[4px_4px_0px_0px_#000]">
+          <div className="space-y-0.5">
+            <span className="text-[10px] font-mono uppercase tracking-wider font-bold text-neutral-400">
+              Case Study Navigation Mode
+            </span>
+            <p className="text-xs font-mono text-neutral-700 font-semibold">
+              {viewMode === "scrapbook" ? "Browsing Curated Editorial Story & Screen Specs" : `Browsing Presentation Deck (${study.deckSlides.length} Curated Slides)`}
+            </p>
+          </div>
+
+          <div className="inline-flex items-center p-1.5 bg-neutral-100 rounded-xl border border-neutral-300 gap-1.5">
+            <button
+              onClick={() => setViewMode("scrapbook")}
+              className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-mono font-bold transition-all ${
+                viewMode === "scrapbook"
+                  ? "bg-black text-white shadow-sm border border-black scale-102"
+                  : "bg-transparent text-neutral-600 hover:text-black hover:bg-neutral-200/60"
+              }`}
+            >
+              <LayoutTemplate className={`w-4 h-4 ${viewMode === "scrapbook" ? "text-[#FF8A65]" : "text-neutral-500"}`} />
+              <span>Scrapbook Story</span>
+            </button>
+            <button
+              onClick={() => setViewMode("deck")}
+              className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-mono font-bold transition-all ${
+                viewMode === "deck"
+                  ? "bg-black text-white shadow-sm border border-black scale-102"
+                  : "bg-transparent text-neutral-600 hover:text-black hover:bg-neutral-200/60"
+              }`}
+            >
+              <Layers className={`w-4 h-4 ${viewMode === "deck" ? "text-[#60A5FA]" : "text-neutral-500"}`} />
+              <span>Full Deck ({study.deckSlides.length} Slides)</span>
+            </button>
           </div>
         </section>
 
