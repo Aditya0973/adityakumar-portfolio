@@ -104,7 +104,13 @@ export function DesignerPlayground() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target || target.closest(".figma-inspector-panel") || target.closest(".designer-playground-pill")) {
+      if (
+        !target ||
+        target.closest(".figma-inspector-panel") ||
+        target.closest(".designer-playground-pill") ||
+        target.closest(".spaces-discovery-modal") ||
+        target.closest("[data-no-inspect]")
+      ) {
         return;
       }
       const rect = target.getBoundingClientRect();
@@ -114,7 +120,13 @@ export function DesignerPlayground() {
 
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target || target.closest(".figma-inspector-panel") || target.closest(".designer-playground-pill")) {
+      if (
+        !target ||
+        target.closest(".figma-inspector-panel") ||
+        target.closest(".designer-playground-pill") ||
+        target.closest(".spaces-discovery-modal") ||
+        target.closest("[data-no-inspect]")
+      ) {
         return;
       }
 

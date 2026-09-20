@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import * as React from "react";
 import Link from "next/link";
@@ -53,9 +53,13 @@ export function SpacesDiscoveryNudge() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 select-none">
+        <div
+          data-no-inspect="true"
+          className="spaces-discovery-modal fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 select-none"
+        >
           {/* Backdrop Blur */}
           <motion.div
+            data-no-inspect="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -65,11 +69,12 @@ export function SpacesDiscoveryNudge() {
 
           {/* Quirky Neobrutalist Dialog Card */}
           <motion.div
+            data-no-inspect="true"
             initial={{ scale: 0.85, opacity: 0, y: 30, rotate: -2 }}
             animate={{ scale: 1, opacity: 1, y: 0, rotate: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20, rotate: 2 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="relative w-full max-w-md bg-[#FAF8F5] rounded-3xl border-3 border-black p-6 sm:p-7 shadow-[8px_8px_0px_0px_#000] space-y-5 text-[#121212] z-10"
+            className="spaces-discovery-modal relative w-full max-w-md bg-[#FAF8F5] rounded-3xl border-3 border-black p-6 sm:p-7 shadow-[8px_8px_0px_0px_#000] space-y-5 text-[#121212] z-10"
           >
             {/* Top Accents */}
             <PushPin color="#E65100" className="absolute -top-3.5 left-8 z-20" />
@@ -77,6 +82,7 @@ export function SpacesDiscoveryNudge() {
 
             {/* Close Cross */}
             <button
+              data-no-inspect="true"
               onClick={handleDismiss}
               aria-label="Close"
               className="absolute top-4 right-4 p-1.5 rounded-full bg-neutral-200/80 hover:bg-neutral-300 text-neutral-700 hover:text-black transition-colors"
@@ -88,7 +94,7 @@ export function SpacesDiscoveryNudge() {
             <div className="space-y-1.5 pt-1">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#CCFF00] border-2 border-black text-black text-[11px] font-mono font-black tracking-wider uppercase shadow-2xs">
                 <Sparkles className="w-3.5 h-3.5 text-black" />
-                <span>PSST... HEY YOU! ðŸ‘€</span>
+                <span>PSST... HEY YOU! {"\uD83D\uDC40"}</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black font-sans tracking-tight text-black leading-snug">
                 Don&apos;t Forget to Explore My Spaces!
@@ -97,12 +103,13 @@ export function SpacesDiscoveryNudge() {
 
             {/* Dialog Body Message */}
             <p className="text-xs sm:text-sm text-neutral-700 font-sans leading-relaxed">
-              You&apos;re only seeing the surface! Check out the <span className="font-bold text-black bg-orange-100 px-1.5 py-0.5 rounded border border-orange-200">bottom dock ðŸ‘‡</span> to jump into 3 dedicated sub-universes:
+              You&apos;re only seeing the surface! Check out the <span className="font-bold text-black bg-orange-100 px-1.5 py-0.5 rounded border border-orange-200">bottom dock {"\uD83D\uDC47"}</span> to jump into 3 dedicated sub-universes:
             </p>
 
             {/* Spaces Quick Jump Chips */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs font-mono font-bold">
               <Link
+                data-no-inspect="true"
                 href="/behance"
                 onClick={handleDismiss}
                 className="flex items-center justify-between sm:flex-col sm:items-start p-2.5 rounded-xl bg-white border-2 border-neutral-300 hover:border-[#0057FF] hover:bg-blue-50/50 hover:shadow-2xs transition-all group"
@@ -117,6 +124,7 @@ export function SpacesDiscoveryNudge() {
               </Link>
 
               <Link
+                data-no-inspect="true"
                 href="/github"
                 onClick={handleDismiss}
                 className="flex items-center justify-between sm:flex-col sm:items-start p-2.5 rounded-xl bg-white border-2 border-neutral-300 hover:border-[#10B981] hover:bg-emerald-50/50 hover:shadow-2xs transition-all group"
@@ -131,6 +139,7 @@ export function SpacesDiscoveryNudge() {
               </Link>
 
               <Link
+                data-no-inspect="true"
                 href="/crafted"
                 onClick={handleDismiss}
                 className="flex items-center justify-between sm:flex-col sm:items-start p-2.5 rounded-xl bg-white border-2 border-neutral-300 hover:border-[#E65100] hover:bg-orange-50/50 hover:shadow-2xs transition-all group"
@@ -148,10 +157,11 @@ export function SpacesDiscoveryNudge() {
             {/* Funny Dismiss Button */}
             <div className="pt-2">
               <button
+                data-no-inspect="true"
                 onClick={handleDismiss}
                 className="w-full py-3 px-4 rounded-2xl bg-black text-white font-mono font-bold text-xs hover:bg-[#E65100] hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_#E65100]"
               >
-                <span>Okay okay! I&apos;ll check them out ðŸ‘</span>
+                <span>Okay okay! I&apos;ll check them out {"\uD83D\uDC4D"}</span>
               </button>
             </div>
           </motion.div>
