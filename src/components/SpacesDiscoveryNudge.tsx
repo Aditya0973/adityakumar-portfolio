@@ -1,29 +1,31 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Palette, Code2, Compass, X, ArrowUpRight, Check } from "lucide-react";
+import { Sparkles, Palette, Code2, Compass, X } from "lucide-react";
 import { PushPin, WashiTape } from "@/components/SketchDoodles";
 import { playPop, playFigmaClick } from "@/utils/soundEffects";
 
-const STORAGE_KEY = "aditya_spaces_nudge_dismissed_v1";
-
 export function SpacesDiscoveryNudge() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
 
+  // Check if current route is one of the specialized sub-spaces
+  const isSpacePage =
+    pathname.startsWith("/behance") ||
+    pathname.startsWith("/github") ||
+    pathname.startsWith("/crafted");
+
   React.useEffect(() => {
-    // Check if already seen/dismissed in this session or before
-    try {
-      const alreadySeen =
-        sessionStorage.getItem(STORAGE_KEY) === "true" ||
-        localStorage.getItem(STORAGE_KEY) === "true";
-      if (alreadySeen) return;
-    } catch {
-      // Ignore storage errors (e.g. strict privacy modes)
+    // If the visitor is already exploring a sub-space, do not show the nudge
+    if (isSpacePage) {
+      setIsOpen(false);
+      return;
     }
 
-    // Trigger after exactly 15 seconds
+    // Fresh 15-second timer on page visit or refresh
     const timer = setTimeout(() => {
       setIsOpen(true);
       try {
@@ -34,18 +36,19 @@ export function SpacesDiscoveryNudge() {
     }, 15000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [pathname, isSpacePage]);
 
   const handleDismiss = () => {
     try {
       playFigmaClick();
-      sessionStorage.setItem(STORAGE_KEY, "true");
-      localStorage.setItem(STORAGE_KEY, "true");
     } catch {
-      // storage fallback
+      // audio fallback
     }
     setIsOpen(false);
   };
+
+  // If in space, do not render modal at all
+  if (isSpacePage) return null;
 
   return (
     <AnimatePresence>
@@ -85,7 +88,7 @@ export function SpacesDiscoveryNudge() {
             <div className="space-y-1.5 pt-1">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#CCFF00] border-2 border-black text-black text-[11px] font-mono font-black tracking-wider uppercase shadow-2xs">
                 <Sparkles className="w-3.5 h-3.5 text-black" />
-                <span>Psst... Hey You! ðŸ‘€</span>
+                <span>PSST... HEY YOU! ðŸ‘€</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black font-sans tracking-tight text-black leading-snug">
                 Don&apos;t Forget to Explore My Spaces!
@@ -94,7 +97,7 @@ export function SpacesDiscoveryNudge() {
 
             {/* Dialog Body Message */}
             <p className="text-xs sm:text-sm text-neutral-700 font-sans leading-relaxed">
-              You&apos;re only seeing the surface! Check out the <span className="font-bold text-black bg-orange-100 px-1 py-0.5 rounded border border-orange-200">bottom dock ðŸ‘‡</span> to jump into 3 dedicated sub-universes:
+              You&apos;re only seeing the surface! Check out the <span className="font-bold text-black bg-orange-100 px-1.5 py-0.5 rounded border border-orange-200">bottom dock ðŸ‘‡</span> to jump into 3 dedicated sub-universes:
             </p>
 
             {/* Spaces Quick Jump Chips */}
