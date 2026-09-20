@@ -7,6 +7,7 @@ import { DesignerPlayground } from "@/components/DesignerPlayground";
 import { ClickSpark } from "@/components/ClickSpark";
 import { Preloader } from "@/components/Preloader";
 import { AppLayoutWrapper } from "@/components/AppLayoutWrapper";
+import { SpacesDiscoveryNudge } from "@/components/SpacesDiscoveryNudge";
 
 import { DesignerCursor } from "@/components/DesignerCursor";
 
@@ -71,6 +72,9 @@ export default function RootLayout({
 
           {/* Designer Interactive Easter Egg Playground */}
           <DesignerPlayground />
+
+          {/* Quirky 15s Spaces Discovery Nudge Dialog */}
+          <SpacesDiscoveryNudge />
         </ThemeProvider>
       </body>
     </html>

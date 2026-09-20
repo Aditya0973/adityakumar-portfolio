@@ -391,7 +391,7 @@ export default function AboutPage() {
               />
             </div>
             <div className="pt-3 px-1 text-xs font-mono text-neutral-700 flex justify-between items-center font-bold">
-              <span>Mobile Glassmorphism Prototype</span>
+              <span>iPhone 15 Pro 3D Model (Blender)</span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-[#0057FF] text-white">CYCLES 4K</span>
             </div>
           </motion.div>
