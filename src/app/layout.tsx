@@ -8,6 +8,8 @@ import { ClickSpark } from "@/components/ClickSpark";
 import { Preloader } from "@/components/Preloader";
 import { AppLayoutWrapper } from "@/components/AppLayoutWrapper";
 import { SpacesDiscoveryNudge } from "@/components/SpacesDiscoveryNudge";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { DesignerCursor } from "@/components/DesignerCursor";
 
@@ -75,6 +77,12 @@ export default function RootLayout({
 
           {/* Quirky 15s Spaces Discovery Nudge Dialog */}
           <SpacesDiscoveryNudge />
+
+          {/* Vercel Web Analytics */}
+          <Analytics />
+
+          {/* Vercel Speed Insights */}
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
